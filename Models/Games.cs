@@ -7,7 +7,7 @@ namespace SQL.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public long? Players { get; set; }
-        public double? Mark { get; set; }
+        public long Players { get; set; }
+        public double Mark { get; set; }
     }
 }
