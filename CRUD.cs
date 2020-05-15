@@ -16,6 +16,7 @@ namespace SQL
                 game.Players = long.Parse(Console.ReadLine());
                 System.Console.Write("Enter mark of this game: ");
                 game.Mark = double.Parse(Console.ReadLine());
+                con.Add(game);
                 if (con.SaveChanges() > 0){
                     Console.ForegroundColor = ConsoleColor.Green;
                     System.Console.WriteLine($"{game.Name} was successfully added");
@@ -71,11 +72,13 @@ namespace SQL
         }
         public void Delete(){
             using(masterContext con = new masterContext()){
+                Read();
                 System.Console.Write("Enter Id: ");
                 int gameId = int.Parse(Console.ReadLine());
                 var game = con.Games.Find(gameId);
                 if( game != null){
-                    if(con.Games.Remove(game) == null){
+                    con.Games.Remove(game);
+                    if(con.SaveChanges() == 0){
                         Console.ForegroundColor = ConsoleColor.Red;
                         System.Console.WriteLine("Error! Game wasn't delete");
                         Console.ForegroundColor = ConsoleColor.White;

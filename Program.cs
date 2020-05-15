@@ -15,7 +15,9 @@ namespace SQL
             switch(int.Parse(Console.ReadLine())){
                 case 1: use.Create(); goto start;
                 case 2: use.Update(); goto start;
-                case 3: use.re
+                case 3: use.Read(); goto start;
+                case 4: use.Delete(); goto start;
+                default: System.Console.WriteLine("Bye"); break;
             }
             System.Console.ReadLine();
         }
