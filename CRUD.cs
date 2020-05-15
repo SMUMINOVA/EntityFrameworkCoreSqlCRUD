@@ -72,7 +72,6 @@ namespace SQL
         }
         public void Delete(){
             using(masterContext con = new masterContext()){
-                Read();
                 System.Console.Write("Enter Id: ");
                 int gameId = int.Parse(Console.ReadLine());
                 var game = con.Games.Find(gameId);
