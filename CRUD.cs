@@ -5,9 +5,9 @@ using SQL.Models;
 
 namespace SQL
 {
-    public static class CRUD
+    public class CRUD
     {
-        public static void Create(){
+        public void Create(){
             using(masterContext con = new masterContext()){
                 Games game = new Games();
                 System.Console.Write("Enter name of game: ");
@@ -28,7 +28,25 @@ namespace SQL
                 }
             }
         }
-        public static void Update(){
+        public void Read(){
+            using(masterContext con = new masterContext()){
+                List<Games> games = con.Games.ToList();
+                foreach(var g in games){
+                    System.Console.Write($"{g.Id}.{g.Name}    Players:{g.Players}    ");
+                    if(g.Mark < 4){
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    System.Console.WriteLine($"Mark: {g.Mark}");                    
+                    Console.ForegroundColor = ConsoleColor.White;                        
+                    }
+                    else{
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    System.Console.WriteLine($"Mark: {g.Mark}");                    
+                    Console.ForegroundColor = ConsoleColor.White;                         
+                    }
+                }
+            }
+        }
+        public void Update(){
             using(masterContext con = new masterContext()){
                 System.Console.Write("Enter Id: ");
                 int gameId = int.Parse(Console.ReadLine());
@@ -51,7 +69,7 @@ namespace SQL
                 }
             }
         }
-        public static void Delete(){
+        public void Delete(){
             using(masterContext con = new masterContext()){
                 System.Console.Write("Enter Id: ");
                 int gameId = int.Parse(Console.ReadLine());
