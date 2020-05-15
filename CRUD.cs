@@ -51,5 +51,24 @@ namespace SQL
                 }
             }
         }
+        public static void Delete(){
+            using(masterContext con = new masterContext()){
+                System.Console.Write("Enter Id: ");
+                int gameId = int.Parse(Console.ReadLine());
+                var game = con.Games.Find(gameId);
+                if( game != null){
+                    if(con.Games.Remove(game) == null){
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        System.Console.WriteLine("Error! Game wasn't delete");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    else{
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        System.Console.WriteLine("Game was successfully delete");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                }
+            }
+        }
     }
 }
